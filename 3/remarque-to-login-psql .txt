@@ -1,0 +1,6 @@
+rq:
+go to pgadmin and  create user : root 
+CREATE USER root WITH LOGIN SUPERUSER CREATEDB CREATEROLE  PASSWORD 'Ahmed216!';
+then :
+in shell :
+docker exec -it my-postgres-container psql -W root
