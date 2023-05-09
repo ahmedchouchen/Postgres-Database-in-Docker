@@ -1,5 +1,5 @@
 rq:
-go to pgadmin and  create user : root 
+go to pgadmin ( host:16543 ) and  create user : root 
 CREATE USER root WITH LOGIN SUPERUSER CREATEDB CREATEROLE  PASSWORD 'Ahmed216!';
 then :
 in shell :
