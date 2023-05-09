@@ -1,0 +1,6 @@
+pull
+----------------------------------------
+create repo on docker hub
+tag
+push 
+docker run -p 5050:80 -e "PGADMIN_DEFAULT_EMAIL=adress6@gmail.com" -e "PGADMIN_DEFAULT_PASSWORD=mot-de-passe" -d repo:pgadmin4-iso
