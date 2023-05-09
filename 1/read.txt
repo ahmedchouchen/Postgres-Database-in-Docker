@@ -1,0 +1,4 @@
+use postgres on docker :
+docker pull postgres     
+docker run --name my-postgres-container  -e POSTGRES_PASSWORD=mysecretpassword -d postgres   --## run container 
+docker exec -it my-postgres-container psql -U postgres                                       --## Access PostgreSQL

@@ -1,0 +1,27 @@
+version: '3.6'
+services: 
+    postgres:
+        image: postgres
+        restart: always
+        environment: 
+            - DATABASE_HOST=192.168.56.5
+            - POSTGRES_USER=ahmed
+            - POSTGRES_PASSWORD=Ahmed216!
+            - POSTGRES_DB=root  
+
+        ports: 
+            - "5432:5432"
+        volumes: 
+            - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+    
+    pgadmin-compose:
+        image: dpage/pgadmin4
+        environment: 
+            PGADMIN_DEFAULT_EMAIL: "ahmedchouchen216@gmail.com"
+            PGADMIN_DEFAULT_PASSWORD: "Ahmed216!"
+        ports: 
+            - "16543:80"
+        depends_on: 
+            - postgres    
+
+

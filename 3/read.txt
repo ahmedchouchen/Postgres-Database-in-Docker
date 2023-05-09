@@ -1,0 +1,92 @@
+ ###################   see PDF     ######
+
+Let’s Start Creating Docker Seeding
+
+Hope you are familiar with “Docker-Compose”
+
+Folder structure
+
+Project
+├── docker-compose.yml (File)
+├── docker_postgres_init.sql (File)
+
+
+
+----------------------------------- Create a new file docker-compose.yml
+
+version: '3.6'
+services: 
+    postgres:
+        image: postgres
+        restart: always
+        environment: 
+            - DATABASE_HOST=127.0.0.1
+            - POSTGRES_USER=root
+            - POSTGRES_PASSWORD=root
+            - POSTGRES_DB=root  
+
+        ports: 
+            - "5432:5432"
+        volumes: 
+            - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+    
+    pgadmin-compose:
+        image: dpage/pgadmin4
+        environment: 
+            PGADMIN_DEFAULT_EMAIL: "test@gmail.com"
+            PGADMIN_DEFAULT_PASSWORD: "test123!"
+        ports: 
+            - "16543:80"
+        depends_on: 
+            - postgres    
+----------------------------------------docker_postgres_init.sql
+CREATE TABLE student
+(
+    id bigint NOT NULL,
+    name text COLLATE pg_catalog."default",
+    CONSTRAINT student_pkey PRIMARY KEY (id)
+);
+
+INSERT INTO student(id, name) VALUES
+ (1, 'A'),
+ (2, 'B'),
+ (3, 'C');
+
+
+------------------------------------------------------------------------
+docker-compose up
+------------------------------------------------------------------------
+
+Try to run the following URL in the browser  : http://localhost:16543
+
+------------------------------------------------------------------------
+
+username: test@gmail.com
+password: test123!
+
+------------------------------------------------------------------------
+
+after successful login, you will see the following screen.
+
+Then click on to server -> create -> server
+
+You will see the following pop up then in the General tab type
+
+name: root_user
+
+Then click on the Connection tab as the following screenshot then input Hostname
+
+You can get Hostname by typing the following command
+$ ifconfig |grep inet
+
+then type
+
+Database: root
+
+Username: root
+
+Password: root
+
+then click on to Save Button
+
+then you will see the connection successful on the left side of the Pgadmin 4 navigation as shown below.

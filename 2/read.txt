@@ -1,0 +1,4 @@
+use postgres on docker  with Dockerfile:
+docker build -t my-postgres .
+docker run --name my-postgres -p 5432:5432 -d my-postgres
+docker exec -it my-postgres psql -U postgres
